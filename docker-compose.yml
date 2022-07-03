@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  salt:
+    image: saltstack/salt:latest
+    hostname: salt
+    env_file:
+      - ./master.env
+    expose:
+      - "4505"
+      - "4506"
+      - "8000"
+    cap_add:
+      - SYS_ADMIN
+    tmpfs: /run
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./srv/salt:/srv/salt/:rw
+      - ./srv/pillar:/srv/pillar/:rw
+      - ./srv/reactor:/srv/reactor/:rw
+  minion01:
+    image: saltstack/salt:latest
+    links:
+      - salt
+    hostname: minion01
+    env_file:
+      - ./minion.env
+    cap_add:
+      - SYS_ADMIN
+    tmpfs: /run
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./minions/minion01:/etc/salt/minion_id
+      - ./grains/minion01:/etc/salt/grains
+  minion02:
+    image: saltstack/salt:latest
+    links:
+      - salt
+    hostname: minion02
+    env_file:
+      - ./minion.env
+    cap_add:
+      - SYS_ADMIN
+    tmpfs: /run
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./minions/minion02:/etc/salt/minion_id
+      - ./grains/minion02:/etc/salt/grains
