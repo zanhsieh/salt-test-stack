@@ -62,3 +62,4 @@ Rejected Keys:
 
 - I can't find `SALT_MASTER_CONFIG` in [salt official docker image](https://hub.docker.com/r/saltstack/salt) clear example, but [this code snippet](https://github.com/librato/salt-state-test/blob/6efe7be8eb2aab21dab4a152e72a8acea2eecedd/test_salt_state.py#L154) inspires me.
 - I can't find how to config salt minion either, but `SALT_MINION_CONFIG` could be found in this salt [official repo](https://gitlab.com/saltstack/open/saltdocker/-/blob/master/cicd/docker/saltinit.py#L10). Click the version on the saltstack/salt docker hub page, then go up one directory, then check `saltinit.py`.
+- This test stack does support orchestration state. For example, `docker exec salt-test-stack-salt-1 sh -c 'salt-run state.orch orch.test'`
