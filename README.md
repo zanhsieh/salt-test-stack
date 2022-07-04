@@ -1,6 +1,4 @@
-# salt-test-stack
-Easy Salt state testing with Docker
-===========
+# salt-test-stack - Easy Salt state testing with Docker
 
 This repo use [salt official docker image](https://hub.docker.com/r/saltstack/salt) and split them to a master and two minions. It serves the same purpose as the original one to quick bring up a salt stack to let you verify some concept.
 
