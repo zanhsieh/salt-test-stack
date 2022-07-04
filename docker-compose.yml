@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   salt:
-    image: saltstack/salt:latest
+    image: saltstack/salt:3003
     hostname: salt
     env_file:
       - ./master.env
@@ -18,7 +18,7 @@ services:
       - ./srv/pillar:/srv/pillar/:rw
       - ./srv/reactor:/srv/reactor/:rw
   minion01:
-    image: saltstack/salt:latest
+    image: saltstack/salt:3003
     links:
       - salt
     hostname: minion01
@@ -32,7 +32,7 @@ services:
       - ./minions/minion01:/etc/salt/minion_id
       - ./grains/minion01:/etc/salt/grains
   minion02:
-    image: saltstack/salt:latest
+    image: saltstack/salt:3003
     links:
       - salt
     hostname: minion02
